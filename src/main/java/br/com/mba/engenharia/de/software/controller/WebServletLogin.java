@@ -9,8 +9,8 @@ import java.io.IOException;
 
 
 @WebServlet("/home/")
-public class WebServletHome extends HttpServlet {
-    public WebServletHome() {
+public class WebServletLogin extends HttpServlet {
+    public WebServletLogin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +29,8 @@ public class WebServletHome extends HttpServlet {
 
         response.setContentType("text/html");
         response.getWriter();
-        request.setAttribute("/testLogin",new ClienteController().testLogin(request,response));
-        request.setAttribute("/logout", new ClienteController().logout());
+        request.setAttribute("/testLogin",new LoginController().testLogin(request,response));
+        request.setAttribute("/testConta",new ContaController().testConta(request,response));
+        request.setAttribute("/logout", new LoginController().logout());
     }
 }

@@ -1,6 +1,7 @@
 package br.com.mba.engenharia.de.software.controller;
 
-import br.com.mba.engenharia.de.software.model.Cliente;
+import br.com.mba.engenharia.de.software.model.login.Login;
+import br.com.mba.engenharia.de.software.negocio.user.Usuario;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +13,8 @@ import java.io.IOException;
 
 @RestController
 
-public class ClienteController{
-    private static final Logger logger = LoggerFactory.getLogger(Cliente.class);
+public class LoginController {
+    private static final Logger logger = LoggerFactory.getLogger(Login.class);
     @GetMapping("/loginFailure")
     String loginFailure() {
         return "login falhou";
@@ -26,8 +27,12 @@ public class ClienteController{
     String testLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+        usuario.setNome(userName);
+        usuario.setSenha(password);
         if(userName.equals("wendel") && (password.equals("123456"))){
-            response.sendRedirect("/home");
+            response.sendRedirect("/home?id=1");
             return "/home";
         }
         else{

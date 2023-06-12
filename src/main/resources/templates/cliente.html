@@ -5,22 +5,27 @@ xmlns:th="http://www.thymeleaf.org">
 </head>
 <body>
 <h2>Formulário de Cadastro de Cliente</h2>
-<form method="POST" path="/home" action="/addCliente">
-   <table>
-    <tr>
-        <td><p th:text="Conta"></p></td>
-        <td><input path="account" /></td>
-    </tr>
-    <tr>
-        <td><p th:text="CPF"></p></td>
-        <td><input path="extract" /></td>
-    </tr>
-    <tr>
-        <td colspan="2">
+<form th:action="@{/testConta}" method="get">
+        <p th:text="Tipo"></p>
+        <select name="tipoConta">
+            <option value="1">Conta Corrente</option>
+            <option value="2" >Conta Poupança</option>
+            <option value="3">Conta Salario</option>
+            <option value="4">Conta Empresarial</option>
+        </select>
+        <p th:text="Banco"></p>
+        <select name="banco">
+            <option value="1">Banco do Brasil</option>
+            <option value="2">Bradesco</option>
+            <option value="3" >C6</option>
+            <option value="4">Caixa Econômica Federal</option>
+            <option value="5">Itau</option>
+            <option value="6">NUBAMK</option>
+            <option value="7" >PAN</option>
+            <option value="8">Santander</option>
+            <option value="9">Outros</option>
+        </select>
             <input type="submit" value="Submit"/>
-        </td>
-    </tr>
-</table>
 </form>
 </body>
 </html>
