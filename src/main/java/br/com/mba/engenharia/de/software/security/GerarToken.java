@@ -1,8 +1,8 @@
 package br.com.mba.engenharia.de.software.security;
 
 public class GerarToken {
-    public String gerarSenhaAleatoria() {
-        int qtdeMaximaCaracteres = 60;
+    public String gerarToken() {
+        int qtdeMaximaCaracteres = 100;
         String[] caracteres = { "a", "1", "b", "2", "4", "5", "6", "7", "8",
                 "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
                 "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
