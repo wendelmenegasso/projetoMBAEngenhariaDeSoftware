@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de Cliente</title>
+</head>
+<script>
+
+ function getParameter(theParameter) {
+            var params = window.location.search.substr(1).split('&');
+
+            for (var i = 0; i < params.length; i++) {
+                var p = params[i].split('=');
+                if (p[0] == theParameter) {
+                    valorId = decodeURIComponent(p[1]);
+                    document.getElementById("idUser").value = valorId;
+
+                }
+            }
+            return false;
+            }
+
+
+            window.onload = function () {
+                getParameter('id');
+             }
+
+</script>
+<body>
+<h2>Formulário de Cadastro de Cliente</h2>
+<form th:action="@{/testConta}" method="get">
+    <p th:text="Tipo"></p>
+    <select name="tipoConta">
+        <option value="1">Conta Corrente</option>
+        <option value="2">Conta Poupança</option>
+        <option value="3">Conta Salario</option>
+        <option value="4">Conta Empresarial</option>
+    </select>
+    <p th:text="Banco"></p>
+    <select name="banco">
+        <option value="1">Banco do Brasil</option>
+        <option value="2">Bradesco</option>
+        <option value="3">C6</option>
+        <option value="4">Caixa Econômica</option>
+        <option value="5">Itau</option>
+        <option value="6">NUBAMK</option>
+        <option value="7">PAN</option>
+        <option value="8">Santander</option>
+        <option value="9">Outros</option>
+    </select>
+    <p th:text="Conta"></p>
+    <input type="text" width="200px" name="conta" placeholder="Numero conta"/>
+    <p th:text="Agencia"></p>
+    <input type="text" width="200px" name="agencia" placeholder="Numero agencia"/>
+    <p th:text="Saldo"></p>
+    <input type="text" width="200px" name="saldo" placeholder="Saldo"/>
+    <input type="submit" value="+"/>
+    <div class="oculto">
+        <input class='formContato' type='text' name='idUser' id='idUser'/>
+    </div>
+</form>
+</body>
+</html>

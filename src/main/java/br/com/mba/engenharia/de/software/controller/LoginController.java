@@ -2,6 +2,7 @@ package br.com.mba.engenharia.de.software.controller;
 
 import br.com.mba.engenharia.de.software.model.login.Login;
 import br.com.mba.engenharia.de.software.negocio.user.Usuario;
+import br.com.mba.engenharia.de.software.security.Criptrografia;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +32,8 @@ public class LoginController {
         usuario.setId(1);
         usuario.setNome(userName);
         usuario.setSenha(password);
-        if(userName.equals("wendel") && (password.equals("123456"))){
+        Criptrografia criptrografia = new Criptrografia();
+        if(userName.equals("wendel") && criptrografia.criptrografia(password)){
             response.sendRedirect("/home?id=1");
             return "/home";
         }

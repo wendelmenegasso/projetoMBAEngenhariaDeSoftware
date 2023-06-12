@@ -1,5 +1,7 @@
 package br.com.mba.engenharia.de.software.negocio.user;
 
+import br.com.mba.engenharia.de.software.security.Criptrografia;
+
 public class Usuario {
     private int id;
     private String nome;
@@ -46,4 +48,5 @@ public class Usuario {
     public void setToken(String token) {
         this.token = token;
     }
+
 }
