@@ -1,5 +1,6 @@
 package br.com.mba.engenharia.de.software.controller;
 
+import br.com.mba.engenharia.de.software.UsuarioTeste;
 import br.com.mba.engenharia.de.software.negocio.account.Conta;
 import br.com.mba.engenharia.de.software.negocio.user.Usuario;
 import br.com.mba.engenharia.de.software.security.GerarToken;
@@ -16,6 +17,8 @@ public class Controller {
         usuario.setNome("Arnaldo");
         usuario.setSenha("123456");
         usuario.setId(usuario.getId());
+        UsuarioTeste usuarioTeste = new UsuarioTeste();
+        usuarioTeste.salvarLista();
         GerarToken gerarToken = new GerarToken();
         usuario.setToken(gerarToken.gerarToken());
 

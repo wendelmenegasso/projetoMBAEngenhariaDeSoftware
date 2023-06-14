@@ -3,7 +3,9 @@ package br.com.mba.engenharia.de.software;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.ConstructorBinding;
 
+@ConstructorBinding
 @SpringBootApplication
 public class Application{
     public static void main(String[] args) {

@@ -8,7 +8,7 @@ public class Conta {
     private String numeroConta;
     private String agencia;
     private BigDecimal saldo;
-    private int idUsuario;
+    private long idUsuario;
 
     public short getTipo() {
         return tipo;
@@ -50,11 +50,11 @@ public class Conta {
         this.saldo = saldo;
     }
 
-    public int getIdUsuario() {
+    public long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
