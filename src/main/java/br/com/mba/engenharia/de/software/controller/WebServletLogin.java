@@ -30,7 +30,6 @@ public class WebServletLogin extends HttpServlet {
         response.setContentType("text/html");
         response.getWriter();
         request.setAttribute("/testLogin",new LoginController().testLogin(request,response));
-        request.setAttribute("/testConta",new ContaController().testConta(request,response));
         request.setAttribute("/logout", new LoginController().logout());
     }
 }

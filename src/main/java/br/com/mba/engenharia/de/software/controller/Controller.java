@@ -12,17 +12,13 @@ public class Controller {
         this.usuario = usuario;
     }
 
-    public void cadastrarConta(Conta conta){
-        usuario.setEmail("teste@teste.com.br");
-        usuario.setNome("Arnaldo");
-        usuario.setSenha("123456");
-        usuario.setId(usuario.getId());
+    public void cadastrarUsuario(){
         UsuarioTeste usuarioTeste = new UsuarioTeste();
-        usuarioTeste.salvarLista();
-        GerarToken gerarToken = new GerarToken();
-        usuario.setToken(gerarToken.gerarToken());
-
-        ContaService contaService = new ContaService(conta);
-        contaService.salvar();
     }
+
+    public boolean cadastrarConta(Conta conta){
+        UsuarioTeste usuarioTeste = new UsuarioTeste();
+        return usuarioTeste.salvarConta(conta);
+    }
+
 }

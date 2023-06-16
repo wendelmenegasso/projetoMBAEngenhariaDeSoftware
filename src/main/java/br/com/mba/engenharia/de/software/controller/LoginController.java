@@ -28,10 +28,7 @@ public class LoginController {
     String testLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
-        Usuario usuario = new Usuario();
-        usuario.setId(1);
-        usuario.setNome(userName);
-        usuario.setSenha(password);
+        Usuario usuario = new Usuario(userName, password);
         Criptrografia criptrografia = new Criptrografia();
         if(userName.equals("wendel") && criptrografia.criptrografia(password)){
             response.sendRedirect("/home?id=1");

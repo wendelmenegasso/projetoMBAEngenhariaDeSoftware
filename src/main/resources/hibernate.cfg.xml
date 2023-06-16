@@ -1,20 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
-        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.password">fsa41306</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost/tcc</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">false</property>
-        <property name="hbm2ddl.auto">update</property>
-
-        <!-- Livro -->
-        <mapping class="br.com.mba.engenharia.de.software" />
-
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://root:fsa41306@localhost:3306/tcc</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">fsa41306</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+        <property name="show_sql">true</property>
+        <property name="hibernate.id.new_generator_mappings">true</property>
+                <mapping class="br.com.mba.engenharia.de.software.negocio.user.Usuario" />
+                <mapping class="br.com.mba.engenharia.de.software.negocio.account.Conta" />
     </session-factory>
 </hibernate-configuration>

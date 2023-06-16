@@ -1,37 +1,43 @@
 package br.com.mba.engenharia.de.software.negocio.account;
 
-import java.math.BigDecimal;
+import jakarta.persistence.*;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
-public class Conta {
-    private short tipo;
-    private short banco;
-    private String numeroConta;
+@Entity
+@Table(name = "conta")
+public class Conta extends AbstractPersistable {
+    @Id
+    private Integer id;
+
+    @Column(name = "banco", nullable = false)
+    private Integer banco;
+
+    @Column(name = "tipo", nullable = false)
+    private Integer tipo;
+
+    @Column(name = "saldo")
+    private Double saldo;
+
+    @Column(name = "agencia", length = 45)
     private String agencia;
-    private BigDecimal saldo;
-    private long idUsuario;
 
-    public short getTipo() {
-        return tipo;
+    @Column(name = "conta", length = 45)
+    private String conta;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setTipo(short tipo) {
-        this.tipo = tipo;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public short getBanco() {
-        return banco;
+    public String getConta() {
+        return conta;
     }
 
-    public void setBanco(short banco) {
-        this.banco = banco;
-    }
-
-    public String getNumeroConta() {
-        return numeroConta;
-    }
-
-    public void setNumeroConta(String numeroConta) {
-        this.numeroConta = numeroConta;
+    public void setConta(String conta) {
+        this.conta = conta;
     }
 
     public String getAgencia() {
@@ -42,21 +48,27 @@ public class Conta {
         this.agencia = agencia;
     }
 
-    public BigDecimal getSaldo() {
+    public Double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(BigDecimal saldo) {
+    public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
 
-    public long getIdUsuario() {
-        return idUsuario;
+    public Integer getTipo() {
+        return tipo;
     }
 
-    public void setIdUsuario(long idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setTipo(Integer tipo) {
+        this.tipo = tipo;
     }
 
+    public Integer getBanco() {
+        return banco;
+    }
 
+    public void setBanco(Integer banco) {
+        this.banco = banco;
+    }
 }

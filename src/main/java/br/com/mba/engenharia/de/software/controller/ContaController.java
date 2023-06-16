@@ -1,35 +1,47 @@
 package br.com.mba.engenharia.de.software.controller;
 
-import br.com.mba.engenharia.de.software.negocio.account.Banco;
 import br.com.mba.engenharia.de.software.negocio.account.Conta;
-import br.com.mba.engenharia.de.software.negocio.account.TipoConta;
 import br.com.mba.engenharia.de.software.negocio.user.Usuario;
+import br.com.mba.engenharia.de.software.security.GerarToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @RestController
 
 public class ContaController {
     private static final Logger logger = LoggerFactory.getLogger(Conta.class);
+
     @GetMapping("/testConta")
-    String testConta(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Usuario usuario = new Usuario();
-        usuario.setId(1);
+    public String testConta(HttpServletRequest request) throws IOException {
+        GerarToken gerarToken = new GerarToken();
+        Usuario usuario = new Usuario("wendel","fsa41306", "wendel.s.menegasso@gmail.com", gerarToken.gerarToken());
         Conta conta = new Conta();
-        conta.setTipo((short) TipoConta.CC.busca(request.getParameter("tipoConta")));
-        conta.setBanco((short) Banco.SANTANDER.busca(request.getParameter("banco")));
-        conta.setNumeroConta("9000");
-        conta.setAgencia("0110");
-        conta.setIdUsuario(usuario.getId());
+        conta.setId(1);
+        String numeroConta = request.getParameter("conta");
+        conta.setConta(numeroConta);
+        String agencia = request.getParameter("agencia");
+        conta.setAgencia(agencia);
+        String valor = request.getParameter("saldo");
+        conta.setSaldo(Double.parseDouble(valor));
+        String tipo = request.getParameter("tipoConta");
+        conta.setTipo(Integer.parseInt(tipo));
+        String banco = request.getParameter("banco");
+        conta.setBanco(Integer.parseInt(banco));
+
         Controller controller = new Controller(usuario);
-        controller.cadastrarConta(conta);
-        logger.info(String.format("Usuário id=%d cadastrou corretamente conta=%s  banco=%d",usuario.getId(), conta.getNumeroConta(), conta.getBanco()));
-        return "Cadastrado com sucesso<input type=hidden name=idUser value="+usuario.getId()+">";
+        if (controller.cadastrarConta(conta)){
+            logger.info(String.format("Usuário cadastrado corretamente"));
+            return "Cadastrado com sucesso<input type=hidden name=idUser>";
+        }
+        else {
+            logger.info(String.format("Erro na conexao"));
+            return "Erro na conexao";
+        }
     }
 }
