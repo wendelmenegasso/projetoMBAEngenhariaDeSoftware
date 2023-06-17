@@ -44,11 +44,13 @@ public class UsuarioTeste {
         return hibernatePersistenceProvider.getPersistenceProvider().createContainerEntityManagerFactory(pui, properties);
     }
 
-    public boolean salvarConta(Conta conta) {
+    public boolean salvarConta(Conta contas) {
         entityManagerFactory();
         entityManager.getTransaction().begin();
+        List id = entityManager.createNativeQuery("select id from conta").getResultList();
+        contas.setId(id.size() + 1);
         try {
-            entityManager.persist(conta);
+            entityManager.persist(contas);
         } catch (IllegalArgumentException exception) {
             entityManager.close();
             logger.trace(String.format("Erro %s", exception));

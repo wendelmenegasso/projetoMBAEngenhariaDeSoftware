@@ -15,5 +15,6 @@
         <property name="hibernate.id.new_generator_mappings">true</property>
                 <mapping class="br.com.mba.engenharia.de.software.negocio.user.Usuario" />
                 <mapping class="br.com.mba.engenharia.de.software.negocio.account.Conta" />
+                <mapping class="br.com.mba.engenharia.de.software.negocio.account.Contas" />
     </session-factory>
 </hibernate-configuration>

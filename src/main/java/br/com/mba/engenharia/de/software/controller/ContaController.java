@@ -1,6 +1,7 @@
 package br.com.mba.engenharia.de.software.controller;
 
 import br.com.mba.engenharia.de.software.negocio.account.Conta;
+import br.com.mba.engenharia.de.software.negocio.account.Contas;
 import br.com.mba.engenharia.de.software.negocio.user.Usuario;
 import br.com.mba.engenharia.de.software.security.GerarToken;
 import org.slf4j.Logger;
@@ -10,19 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 @RestController
 
 public class ContaController {
-    private static final Logger logger = LoggerFactory.getLogger(Conta.class);
+    private static final Logger logger = LoggerFactory.getLogger(Contas.class);
 
     @GetMapping("/testConta")
     public String testConta(HttpServletRequest request) throws IOException {
         GerarToken gerarToken = new GerarToken();
         Usuario usuario = new Usuario("wendel","fsa41306", "wendel.s.menegasso@gmail.com", gerarToken.gerarToken());
         Conta conta = new Conta();
-        conta.setId(1);
         String numeroConta = request.getParameter("conta");
         conta.setConta(numeroConta);
         String agencia = request.getParameter("agencia");

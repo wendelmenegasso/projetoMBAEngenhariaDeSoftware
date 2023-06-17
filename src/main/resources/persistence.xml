@@ -7,9 +7,8 @@
 
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>br.com.mba.engenharia.de.software.negocio.account.Conta</class>
-        <class>br.com.mba.engenharia.de.software.negocio.account.Conta</class>
-        <class>br.com.mba.engenharia.de.software.negocio.account.Usuario</class>
-        <class>br.com.mba.engenharia.de.software.negocio.account.Conta</class>
+        <class>br.com.mba.engenharia.de.software.negocio.account.Contas</class>
+        <class>br.com.mba.engenharia.de.software.negocio.account.ContasEntiry</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

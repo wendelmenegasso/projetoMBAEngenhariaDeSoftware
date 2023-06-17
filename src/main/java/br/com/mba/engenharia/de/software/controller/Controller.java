@@ -3,8 +3,6 @@ package br.com.mba.engenharia.de.software.controller;
 import br.com.mba.engenharia.de.software.UsuarioTeste;
 import br.com.mba.engenharia.de.software.negocio.account.Conta;
 import br.com.mba.engenharia.de.software.negocio.user.Usuario;
-import br.com.mba.engenharia.de.software.security.GerarToken;
-import br.com.mba.engenharia.de.software.service.ContaService;
 
 public class Controller {
     private Usuario usuario;
