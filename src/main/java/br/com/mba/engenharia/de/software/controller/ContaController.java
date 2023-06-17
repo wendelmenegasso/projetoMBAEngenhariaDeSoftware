@@ -1,7 +1,6 @@
 package br.com.mba.engenharia.de.software.controller;
 
 import br.com.mba.engenharia.de.software.negocio.account.Conta;
-import br.com.mba.engenharia.de.software.negocio.account.Contas;
 import br.com.mba.engenharia.de.software.negocio.user.Usuario;
 import br.com.mba.engenharia.de.software.security.GerarToken;
 import org.slf4j.Logger;
@@ -15,7 +14,7 @@ import java.io.IOException;
 @RestController
 
 public class ContaController {
-    private static final Logger logger = LoggerFactory.getLogger(Contas.class);
+    private static final Logger logger = LoggerFactory.getLogger(Conta.class);
 
     @GetMapping("/testConta")
     public String testConta(HttpServletRequest request) throws IOException {

@@ -1,18 +1,18 @@
 package br.com.mba.engenharia.de.software.model;
 
-import br.com.mba.engenharia.de.software.negocio.account.Contas;
+import br.com.mba.engenharia.de.software.negocio.account.Conta;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Cliente {
 
-    private Contas account;
+    private Conta account;
 
-    public Contas getAccount() {
+    public Conta getAccount() {
         return account;
     }
 
-    public void setAccount(Contas account) {
+    public void setAccount(Conta account) {
         this.account = account;
     }
 }

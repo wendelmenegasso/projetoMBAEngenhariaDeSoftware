@@ -9,7 +9,12 @@
         <class>br.com.mba.engenharia.de.software.negocio.account.Conta</class>
         <class>br.com.mba.engenharia.de.software.negocio.account.Contas</class>
         <class>br.com.mba.engenharia.de.software.negocio.account.ContasEntiry</class>
-
+        <class>br.com.mba.engenharia.de.software.negocio.user.Usuarios</class>
+        <class>br.com.mba.engenharia.de.software.negocio.rendas.Rendas</class>
+        <class>br.com.mba.engenharia.de.software.negocio.despesas.Despesas</class>
+        <class>br.com.mba.engenharia.de.software.negocio.imoveis.Imoveis</class>
+        <class>br.com.mba.engenharia.de.software.negocio.empresas.Empresas</class>
+        <class>br.com.mba.engenharia.de.software.negocio.veiculos.Veiculos</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://root:fsa41306@localhost:3306/tcc" />

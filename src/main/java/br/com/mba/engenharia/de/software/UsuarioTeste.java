@@ -47,8 +47,9 @@ public class UsuarioTeste {
     public boolean salvarConta(Conta contas) {
         entityManagerFactory();
         entityManager.getTransaction().begin();
-        List id = entityManager.createNativeQuery("select id from conta").getResultList();
-        contas.setId(id.size() + 1);
+        List list = entityManager.createNativeQuery("select id from conta").getResultList();
+        int id = (int) list.get(list.size() -1) + 1;
+        contas.setId(id);
         try {
             entityManager.persist(contas);
         } catch (IllegalArgumentException exception) {

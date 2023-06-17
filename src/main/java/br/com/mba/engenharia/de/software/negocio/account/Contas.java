@@ -3,11 +3,18 @@ package br.com.mba.engenharia.de.software.negocio.account;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-@Entity(name= "contas")
-@Table(name = "contas")
+@Entity
+@Table(name = "contasbanco")
 public class Contas extends AbstractPersistable {
     @Id
-    @Column(name = "id")
+    @GeneratedValue(
+            strategy = GenerationType.TABLE,
+            generator = "tabela_id_contas"
+    )
+    @TableGenerator(
+            name =  "tabela_id_contas",
+            table = "ids_contas"
+    )
     private Integer id;
 
     @Column(name = "banco")

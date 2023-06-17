@@ -1,6 +1,8 @@
 package br.com.mba.engenharia.de.software.negocio.account;
 
 import jakarta.persistence.*;
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import org.hibernate.dialect.Dialect;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
