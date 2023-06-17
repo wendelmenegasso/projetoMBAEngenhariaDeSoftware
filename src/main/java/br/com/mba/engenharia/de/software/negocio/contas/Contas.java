@@ -1,27 +1,22 @@
-package br.com.mba.engenharia.de.software.negocio.account;
+package br.com.mba.engenharia.de.software.negocio.contas;
 
+import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
 import jakarta.persistence.*;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
-@Table(name = "contasbanco")
-public class Contas extends AbstractPersistable {
+@Table(name = "conta")
+public class Contas {
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.TABLE,
-            generator = "tabela_id_contas"
-    )
-    @TableGenerator(
-            name =  "tabela_id_contas",
-            table = "ids_contas"
-    )
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "banco")
-    private Integer banco;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "banco")
+    private Banco banco;
 
-    @Column(name = "tipo")
-    private Integer tipo;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tipo")
+    private Tipoconta tipo;
 
     @Column(name = "saldo")
     private Double saldo;
@@ -31,6 +26,18 @@ public class Contas extends AbstractPersistable {
 
     @Column(name = "conta", length = 12)
     private String conta;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario")
+    private Usuarios usuario;
+
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
 
     public String getConta() {
         return conta;
@@ -56,19 +63,19 @@ public class Contas extends AbstractPersistable {
         this.saldo = saldo;
     }
 
-    public Integer getTipo() {
+    public Tipoconta getTipo() {
         return tipo;
     }
 
-    public void setTipo(Integer tipo) {
+    public void setTipo(Tipoconta tipo) {
         this.tipo = tipo;
     }
 
-    public Integer getBanco() {
+    public Banco getBanco() {
         return banco;
     }
 
-    public void setBanco(Integer banco) {
+    public void setBanco(Banco banco) {
         this.banco = banco;
     }
 

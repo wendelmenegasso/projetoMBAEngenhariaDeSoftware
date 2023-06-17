@@ -1,9 +1,7 @@
 package br.com.mba.engenharia.de.software.negocio.empresas;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "empresa")
@@ -29,6 +27,18 @@ public class Empresas {
 
     @Column(name = "faturamento")
     private Double faturamento;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario")
+    private Usuarios usuario;
+
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
 
     public Double getFaturamento() {
         return faturamento;

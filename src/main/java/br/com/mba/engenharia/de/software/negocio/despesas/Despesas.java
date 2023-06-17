@@ -1,6 +1,7 @@
 package br.com.mba.engenharia.de.software.negocio.despesas;
 
-import br.com.mba.engenharia.de.software.negocio.rendas.Repeticao;
+import br.com.mba.engenharia.de.software.negocio.repeticao.Repeticao;
+import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
 import jakarta.persistence.*;
 
 @Entity
@@ -27,7 +28,7 @@ public class Despesas {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tipo")
-    private Tipodespesa tipo;
+    private TipoDespesa tipo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "repeticao")
@@ -35,6 +36,18 @@ public class Despesas {
 
     @Column(name = "origem")
     private Integer origem;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario")
+    private Usuarios usuario;
+
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
 
     public Integer getOrigem() {
         return origem;
@@ -52,11 +65,11 @@ public class Despesas {
         this.repeticao = repeticao;
     }
 
-    public Tipodespesa getTipo() {
+    public TipoDespesa getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tipodespesa tipo) {
+    public void setTipo(TipoDespesa tipo) {
         this.tipo = tipo;
     }
 

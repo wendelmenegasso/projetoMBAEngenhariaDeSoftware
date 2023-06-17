@@ -1,6 +1,6 @@
 package br.com.mba.engenharia.de.software.repository;
 
-import br.com.mba.engenharia.de.software.negocio.account.Conta;
+import br.com.mba.engenharia.de.software.negocio.contas.Contas;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,22 +14,22 @@ import java.util.function.Function;
 public class ContasRepositoyImpl implements ContasRepository{
 
     @Override
-    public List<Conta> findAll() {
+    public List<Contas> findAll() {
         return null;
     }
 
     @Override
-    public List<Conta> findAll(Sort sort) {
+    public List<Contas> findAll(Sort sort) {
         return null;
     }
 
     @Override
-    public Page<Conta> findAll(Pageable pageable) {
+    public Page<Contas> findAll(Pageable pageable) {
         return null;
     }
 
     @Override
-    public List<Conta> findAllById(Iterable<Integer> integers) {
+    public List<Contas> findAllById(Iterable<Integer> integers) {
         return null;
     }
 
@@ -44,7 +44,7 @@ public class ContasRepositoyImpl implements ContasRepository{
     }
 
     @Override
-    public void delete(Conta entity) {
+    public void delete(Contas entity) {
 
     }
 
@@ -54,7 +54,7 @@ public class ContasRepositoyImpl implements ContasRepository{
     }
 
     @Override
-    public void deleteAll(Iterable<? extends Conta> entities) {
+    public void deleteAll(Iterable<? extends Contas> entities) {
 
     }
 
@@ -64,17 +64,17 @@ public class ContasRepositoyImpl implements ContasRepository{
     }
 
     @Override
-    public <S extends Conta> S save(S entity) {
+    public <S extends Contas> S save(S entity) {
         return null;
     }
 
     @Override
-    public <S extends Conta> List<S> saveAll(Iterable<S> entities) {
+    public <S extends Contas> List<S> saveAll(Iterable<S> entities) {
         return null;
     }
 
     @Override
-    public Optional<Conta> findById(Integer integer) {
+    public Optional<Contas> findById(Integer integer) {
         return Optional.empty();
     }
 
@@ -89,17 +89,17 @@ public class ContasRepositoyImpl implements ContasRepository{
     }
 
     @Override
-    public <S extends Conta> S saveAndFlush(S entity) {
+    public <S extends Contas> S saveAndFlush(S entity) {
         return null;
     }
 
     @Override
-    public <S extends Conta> List<S> saveAllAndFlush(Iterable<S> entities) {
+    public <S extends Contas> List<S> saveAllAndFlush(Iterable<S> entities) {
         return null;
     }
 
     @Override
-    public void deleteAllInBatch(Iterable<Conta> entities) {
+    public void deleteAllInBatch(Iterable<Contas> entities) {
 
     }
 
@@ -114,52 +114,52 @@ public class ContasRepositoyImpl implements ContasRepository{
     }
 
     @Override
-    public Conta getOne(Integer integer) {
+    public Contas getOne(Integer integer) {
         return null;
     }
 
     @Override
-    public Conta getById(Integer integer) {
+    public Contas getById(Integer integer) {
         return null;
     }
 
     @Override
-    public Conta getReferenceById(Integer integer) {
+    public Contas getReferenceById(Integer integer) {
         return null;
     }
 
     @Override
-    public <S extends Conta> Optional<S> findOne(Example<S> example) {
+    public <S extends Contas> Optional<S> findOne(Example<S> example) {
         return Optional.empty();
     }
 
     @Override
-    public <S extends Conta> List<S> findAll(Example<S> example) {
+    public <S extends Contas> List<S> findAll(Example<S> example) {
         return null;
     }
 
     @Override
-    public <S extends Conta> List<S> findAll(Example<S> example, Sort sort) {
+    public <S extends Contas> List<S> findAll(Example<S> example, Sort sort) {
         return null;
     }
 
     @Override
-    public <S extends Conta> Page<S> findAll(Example<S> example, Pageable pageable) {
+    public <S extends Contas> Page<S> findAll(Example<S> example, Pageable pageable) {
         return null;
     }
 
     @Override
-    public <S extends Conta> long count(Example<S> example) {
+    public <S extends Contas> long count(Example<S> example) {
         return 0;
     }
 
     @Override
-    public <S extends Conta> boolean exists(Example<S> example) {
+    public <S extends Contas> boolean exists(Example<S> example) {
         return false;
     }
 
     @Override
-    public <S extends Conta, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+    public <S extends Contas, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
 }

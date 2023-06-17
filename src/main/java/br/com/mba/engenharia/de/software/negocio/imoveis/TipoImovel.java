@@ -1,4 +1,4 @@
-package br.com.mba.engenharia.de.software.negocio.veiculos;
+package br.com.mba.engenharia.de.software.negocio.imoveis;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,13 +6,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "fabricantes")
-public class Fabricante {
+@Table(name = "tipoimovel")
+public class TipoImovel {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "descr", length = 30)
+    @Column(name = "descr", length = 50)
     private String descr;
 
     public String getDescr() {

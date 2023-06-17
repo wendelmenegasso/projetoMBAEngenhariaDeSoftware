@@ -1,4 +1,4 @@
-package br.com.mba.engenharia.de.software.negocio.user;
+package br.com.mba.engenharia.de.software.negocio.usuarios;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

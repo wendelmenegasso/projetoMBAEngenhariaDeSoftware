@@ -4,17 +4,32 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
     <persistence-unit name="tcc" transaction-type="JTA">
-
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>br.com.mba.engenharia.de.software.negocio.account.Conta</class>
-        <class>br.com.mba.engenharia.de.software.negocio.account.Contas</class>
-        <class>br.com.mba.engenharia.de.software.negocio.account.ContasEntiry</class>
-        <class>br.com.mba.engenharia.de.software.negocio.user.Usuarios</class>
-        <class>br.com.mba.engenharia.de.software.negocio.rendas.Rendas</class>
+        <class>br.com.mba.engenharia.de.software.negocio.despesas.TipoDespesa</class>
+        <class>br.com.mba.engenharia.de.software.negocio.despesas.TipoDespesa</class>
+        <class>br.com.mba.engenharia.de.software.negocio.repeticao.Repeticao</class>
+        <class>br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios</class>
+        <class>br.com.mba.engenharia.de.software.negocio.contas.Tipoconta</class>
+        <class>br.com.mba.engenharia.de.software.negocio.contas.Banco</class>
+        <class>br.com.mba.engenharia.de.software.negocio.contas.Contas</class>
+        <class>br.com.mba.engenharia.de.software.negocio.contas.Tipodespesa</class>
+        <class>br.com.mba.engenharia.de.software.negocio.contas.Despesas</class>
+        <class>br.com.mba.engenharia.de.software.negocio.despesas.TipoDespesa</class>
         <class>br.com.mba.engenharia.de.software.negocio.despesas.Despesas</class>
+        <class>br.com.mba.engenharia.de.software.negocio.rendas.TipoRenda</class>
+        <class>br.com.mba.engenharia.de.software.negocio.rendas.Rendas</class>
+        <class>br.com.mba.engenharia.de.software.negocio.imoveis.Cidade</class>
+        <class>br.com.mba.engenharia.de.software.negocio.imoveis.Estado</class>
+        <class>br.com.mba.engenharia.de.software.negocio.imoveis.Cidade</class>
         <class>br.com.mba.engenharia.de.software.negocio.imoveis.Imoveis</class>
-        <class>br.com.mba.engenharia.de.software.negocio.empresas.Empresas</class>
+        <class>br.com.mba.engenharia.de.software.negocio.veiculos.Fabricante</class>
+        <class>br.com.mba.engenharia.de.software.negocio.veiculos.Modelo</class>
+        <class>br.com.mba.engenharia.de.software.negocio.veiculos.TipoVeiculo</class>
         <class>br.com.mba.engenharia.de.software.negocio.veiculos.Veiculos</class>
+        <class>br.com.mba.engenharia.de.software.negocio.empresas.Empresas</class>
+        <class>br.com.mba.engenharia.de.software.negocio.empresas.Empresas</class>
+        <class>br.com.mba.engenharia.de.software.negocio.imoveis.TipoImovel</class>
+        <class>br.com.mba.engenharia.de.software.negocio.imoveis.Imoveis</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://root:fsa41306@localhost:3306/tcc" />

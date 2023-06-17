@@ -1,5 +1,7 @@
 package br.com.mba.engenharia.de.software.negocio.rendas;
 
+import br.com.mba.engenharia.de.software.negocio.repeticao.Repeticao;
+import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
 import jakarta.persistence.*;
 
 @Entity
@@ -26,11 +28,23 @@ public class Rendas {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tipo")
-    private Tiporenda tipo;
+    private TipoRenda tipo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "repeticao")
     private Repeticao repeticao;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario")
+    private Usuarios usuario;
+
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
 
     public Repeticao getRepeticao() {
         return repeticao;
@@ -40,11 +54,11 @@ public class Rendas {
         this.repeticao = repeticao;
     }
 
-    public Tiporenda getTipo() {
+    public TipoRenda getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tiporenda tipo) {
+    public void setTipo(TipoRenda tipo) {
         this.tipo = tipo;
     }
 

@@ -4,7 +4,7 @@
     <persistence-units>
       <persistence-unit name="tcc" persistenceXmlPath="src/main/resources/persistence.xml">
         <packages>
-          <package value="br.com.mba.engenharia.de.software.negocio.account" />
+          <package value="br.com.mba.engenharia.de.software.negocio.contas" />
           <package value="" />
         </packages>
       </persistence-unit>

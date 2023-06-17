@@ -1,5 +1,6 @@
 package br.com.mba.engenharia.de.software.negocio.veiculos;
 
+import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,7 +12,7 @@ public class Veiculos {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tipo")
-    private Tipoveiculo tipo;
+    private TipoVeiculo tipo;
 
     @Column(name = "valor")
     private Double valor;
@@ -29,6 +30,18 @@ public class Veiculos {
 
     @Column(name = "placa", length = 8)
     private String placa;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario")
+    private Usuarios usuario;
+
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
 
     public String getPlaca() {
         return placa;
@@ -70,11 +83,11 @@ public class Veiculos {
         this.valor = valor;
     }
 
-    public Tipoveiculo getTipo() {
+    public TipoVeiculo getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tipoveiculo tipo) {
+    public void setTipo(TipoVeiculo tipo) {
         this.tipo = tipo;
     }
 

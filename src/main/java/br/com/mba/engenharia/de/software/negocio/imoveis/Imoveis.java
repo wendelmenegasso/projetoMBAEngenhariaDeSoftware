@@ -1,5 +1,6 @@
 package br.com.mba.engenharia.de.software.negocio.imoveis;
 
+import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,7 +12,7 @@ public class Imoveis {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tipo")
-    private Tipoimovel tipo;
+    private TipoImovel tipo;
 
     @Column(name = "valor")
     private Double valor;
@@ -38,6 +39,18 @@ public class Imoveis {
 
     @Column(name = "complemento", length = 50)
     private String complemento;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario")
+    private Usuarios usuario;
+
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
 
     public String getComplemento() {
         return complemento;
@@ -103,11 +116,11 @@ public class Imoveis {
         this.valor = valor;
     }
 
-    public Tipoimovel getTipo() {
+    public TipoImovel getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tipoimovel tipo) {
+    public void setTipo(TipoImovel tipo) {
         this.tipo = tipo;
     }
 

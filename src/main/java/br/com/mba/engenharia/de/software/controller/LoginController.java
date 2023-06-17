@@ -1,7 +1,7 @@
 package br.com.mba.engenharia.de.software.controller;
 
 import br.com.mba.engenharia.de.software.model.login.Login;
-import br.com.mba.engenharia.de.software.negocio.user.Usuario;
+import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
 import br.com.mba.engenharia.de.software.security.Criptrografia;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +28,9 @@ public class LoginController {
     String testLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
-        Usuario usuario = new Usuario(userName, password);
+        Usuarios usuario = new Usuarios();
+        usuario.setUsername(userName);
+        usuario.setSenha(password);
         Criptrografia criptrografia = new Criptrografia();
         if(userName.equals("wendel") && criptrografia.criptrografia(password)){
             response.sendRedirect("/home?id=1");

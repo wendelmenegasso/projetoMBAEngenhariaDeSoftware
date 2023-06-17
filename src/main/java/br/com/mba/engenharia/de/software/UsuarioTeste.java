@@ -1,6 +1,6 @@
 package br.com.mba.engenharia.de.software;
 
-import br.com.mba.engenharia.de.software.negocio.account.Conta;
+import br.com.mba.engenharia.de.software.negocio.contas.Contas;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceContext;
 import org.slf4j.Logger;
@@ -44,7 +44,7 @@ public class UsuarioTeste {
         return hibernatePersistenceProvider.getPersistenceProvider().createContainerEntityManagerFactory(pui, properties);
     }
 
-    public boolean salvarConta(Conta contas) {
+    public boolean salvarConta(Contas contas) {
         entityManagerFactory();
         entityManager.getTransaction().begin();
         List list = entityManager.createNativeQuery("select id from conta").getResultList();
