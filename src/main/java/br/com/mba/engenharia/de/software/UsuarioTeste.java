@@ -48,8 +48,13 @@ public class UsuarioTeste {
         entityManagerFactory();
         entityManager.getTransaction().begin();
         List list = entityManager.createNativeQuery("select id from conta").getResultList();
-        int id = (int) list.get(list.size() -1) + 1;
-        contas.setId(id);
+        if (list.size() > 0){
+            int id = (int) list.get(list.size() -1) + 1;
+            contas.setId(id);
+        }
+        else{
+            contas.setId(1);
+        }
         try {
             entityManager.persist(contas);
         } catch (IllegalArgumentException exception) {

@@ -20,7 +20,7 @@ public class LoginController {
     String loginFailure() {
         return "login falhou";
     }
-    @GetMapping("/logout")
+    @GetMapping("/redirectLogout")
     String logout() {
         return "logout";
     }

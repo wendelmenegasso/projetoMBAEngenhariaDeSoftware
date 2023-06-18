@@ -1,8 +1,6 @@
 package br.com.mba.engenharia.de.software.controller;
 
-import br.com.mba.engenharia.de.software.negocio.contas.Banco;
-import br.com.mba.engenharia.de.software.negocio.contas.Contas;
-import br.com.mba.engenharia.de.software.negocio.contas.Tipoconta;
+import br.com.mba.engenharia.de.software.negocio.contas.*;
 import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
 import br.com.mba.engenharia.de.software.security.GerarToken;
 import org.slf4j.Logger;
@@ -38,12 +36,14 @@ public class ContaController {
         String valor = request.getParameter("saldo");
         conta.setSaldo(Double.parseDouble(valor));
         String tipo = request.getParameter("tipoConta");
-        Tipoconta tipoconta = new Tipoconta();
-        tipoconta.setId(Integer.parseInt(tipo));
+        Tipoconta tipoconta = TipoContaEnum.CC.getTipoconta(Integer.parseInt(tipo));
         conta.setTipo(tipoconta);
+        conta.setUsuario(usuario);
         String bancoValue = request.getParameter("banco");
-        Banco banco = new Banco();
-        banco.setId(Integer.parseInt(bancoValue));
+        Banco banco = BancoEnum.BANCO_PAN.getBanco(Integer.parseInt(bancoValue));
+        if (banco == null){
+            return "Banco não encontrado!";
+        }
         conta.setBanco(banco);
 
         Controller controller = new Controller(usuario);

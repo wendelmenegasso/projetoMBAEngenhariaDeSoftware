@@ -5,17 +5,17 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "conta")
-public class Contas {
+public class Contas  {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "banco")
+    @JoinColumn(name = "fk_banco")
     private Banco banco;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tipo")
+    @JoinColumn(name = "fk_tipo")
     private Tipoconta tipo;
 
     @Column(name = "saldo")
@@ -28,7 +28,7 @@ public class Contas {
     private String conta;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario")
+    @JoinColumn(name = "fk_conta_usuario")
     private Usuarios usuario;
 
     public Usuarios getUsuario() {

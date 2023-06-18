@@ -12,7 +12,6 @@ import java.io.IOException;
 public class WebServletConta extends HttpServlet {
     public WebServletConta() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     protected void service(HttpServletRequest request,

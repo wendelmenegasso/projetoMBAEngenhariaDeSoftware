@@ -25,6 +25,8 @@ public class MyWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/logout")
                 .deleteCookies("JSESSIONID");
+        http
+                .headers().disable();
     }
 }
 
