@@ -32,7 +32,7 @@ public class LoginController {
         usuario.setUsername(userName);
         usuario.setSenha(password);
         Criptrografia criptrografia = new Criptrografia();
-        if(userName.equals("wendel") && criptrografia.criptrografia(password)){
+        if(userName.equals("wendel@gmail.com") && criptrografia.criptrografia(password)){
             response.sendRedirect("/home?id=1");
             return "/home";
         }
