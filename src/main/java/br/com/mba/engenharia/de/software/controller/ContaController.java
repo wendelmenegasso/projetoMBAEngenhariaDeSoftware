@@ -1,7 +1,7 @@
 package br.com.mba.engenharia.de.software.controller;
 
 import br.com.mba.engenharia.de.software.negocio.contas.*;
-import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
+import br.com.mba.engenharia.de.software.negocio.usuarios.Usuario;
 import br.com.mba.engenharia.de.software.security.GerarToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,12 +14,12 @@ import java.io.IOException;
 @RestController
 
 public class ContaController {
-    private static final Logger logger = LoggerFactory.getLogger(Contas.class);
+    private static final Logger logger = LoggerFactory.getLogger(Conta.class);
 
     @GetMapping("/testConta")
     public String testConta(HttpServletRequest request) throws IOException {
         GerarToken gerarToken = new GerarToken();
-        Usuarios usuario = new Usuarios();
+        Usuario usuario = new Usuario();
         usuario.setCpf("11111111111");
         usuario.setUsername("wmene");
         usuario.setNome("Willian");
@@ -28,7 +28,7 @@ public class ContaController {
         usuario.setSenha("123456");
         usuario.setToken(gerarToken.gerarToken());
         usuario.setId(1);
-        Contas conta = new Contas();
+        Conta conta = new Conta();
         String numeroConta = request.getParameter("conta");
         conta.setConta(numeroConta);
         String agencia = request.getParameter("agencia");
@@ -37,14 +37,14 @@ public class ContaController {
         conta.setSaldo(Double.parseDouble(valor));
         String tipo = request.getParameter("tipoConta");
         Tipoconta tipoconta = TipoContaEnum.CC.getTipoconta(Integer.parseInt(tipo));
-        conta.setTipo(tipoconta);
-        conta.setUsuario(usuario);
+        conta.setTipo(tipoconta.getId());
+        conta.setUsuario(usuario.getId());
         String bancoValue = request.getParameter("banco");
         Banco banco = BancoEnum.BANCO_PAN.getBanco(Integer.parseInt(bancoValue));
         if (banco == null){
             return "Banco não encontrado!";
         }
-        conta.setBanco(banco);
+        conta.setBanco(banco.getId());
 
         Controller controller = new Controller(usuario);
         if (controller.cadastrarConta(conta)){

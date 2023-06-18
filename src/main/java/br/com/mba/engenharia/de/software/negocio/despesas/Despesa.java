@@ -1,12 +1,13 @@
 package br.com.mba.engenharia.de.software.negocio.despesas;
 
-import br.com.mba.engenharia.de.software.negocio.repeticao.Repeticao;
-import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "despesas")
-public class Despesas {
+public class Despesa {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
@@ -26,26 +27,23 @@ public class Despesas {
     @Column(name = "dia")
     private Integer dia;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tipo")
-    private TipoDespesa tipo;
+    @Column(name = "tipo")
+    private Integer tipo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "repeticao")
-    private Repeticao repeticao;
+    @Column(name = "repeticao")
+    private Integer repeticao;
 
     @Column(name = "origem")
     private Integer origem;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario")
-    private Usuarios usuario;
+    @Column(name = "usuario")
+    private Integer usuario;
 
-    public Usuarios getUsuario() {
+    public Integer getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuarios usuario) {
+    public void setUsuario(Integer usuario) {
         this.usuario = usuario;
     }
 
@@ -57,19 +55,19 @@ public class Despesas {
         this.origem = origem;
     }
 
-    public Repeticao getRepeticao() {
+    public Integer getRepeticao() {
         return repeticao;
     }
 
-    public void setRepeticao(Repeticao repeticao) {
+    public void setRepeticao(Integer repeticao) {
         this.repeticao = repeticao;
     }
 
-    public TipoDespesa getTipo() {
+    public Integer getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoDespesa tipo) {
+    public void setTipo(Integer tipo) {
         this.tipo = tipo;
     }
 

@@ -1,6 +1,9 @@
 package br.com.mba.engenharia.de.software.negocio.imoveis;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "cidade")
@@ -9,9 +12,8 @@ public class Cidade {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "estado")
-    private Estado estado;
+    @Column(name = "estado")
+    private Integer estado;
 
     @Column(name = "descr", length = 40)
     private String descr;
@@ -24,11 +26,11 @@ public class Cidade {
         this.descr = descr;
     }
 
-    public Estado getEstado() {
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(Estado estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
 

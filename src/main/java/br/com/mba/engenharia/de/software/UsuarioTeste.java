@@ -1,6 +1,6 @@
 package br.com.mba.engenharia.de.software;
 
-import br.com.mba.engenharia.de.software.negocio.contas.Contas;
+import br.com.mba.engenharia.de.software.negocio.contas.Conta;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceContext;
 import org.slf4j.Logger;
@@ -37,14 +37,14 @@ public class UsuarioTeste {
         properties.put("javax.persistence.jdbc.url", "jdbc:mysql://root:fsa41306@localhost:3306/tcc?useTimezone=true&serverTimezone=UTC");
 
         List<String> managedClassName = new ArrayList<>();
-        managedClassName.add("br.com.mba.engenharia.de.software.negocio.account.Conta");
+        managedClassName.add("br.com.mba.engenharia.de.software.negocio.contas.Conta");
         SmartPersistenceUnitInfo pui = new PersistenceUnitInfoImpl("tcc", managedClassName, properties);
-        pui.setPersistenceProviderPackageName("\"br.com.mba.engenharia.de.software.negocio.account.Conta");
+        pui.setPersistenceProviderPackageName("\"br.com.mba.engenharia.de.software.negocio.contas.Conta");
         this.entityManager = hibernatePersistenceProvider.getPersistenceProvider().createContainerEntityManagerFactory(pui, properties).createEntityManager();
         return hibernatePersistenceProvider.getPersistenceProvider().createContainerEntityManagerFactory(pui, properties);
     }
 
-    public boolean salvarConta(Contas contas) {
+    public boolean salvarConta(Conta contas) {
         entityManagerFactory();
         entityManager.getTransaction().begin();
         List list = entityManager.createNativeQuery("select id from conta").getResultList();
@@ -58,6 +58,7 @@ public class UsuarioTeste {
         try {
             entityManager.persist(contas);
         } catch (IllegalArgumentException exception) {
+            exception.printStackTrace();
             entityManager.close();
             logger.trace(String.format("Erro %s", exception));
             return false;

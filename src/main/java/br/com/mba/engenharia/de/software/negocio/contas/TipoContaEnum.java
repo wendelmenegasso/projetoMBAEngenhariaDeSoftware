@@ -19,7 +19,7 @@ public enum TipoContaEnum{
             if (tipoContaEnum.id == id){
                 this.tipoconta.setDescr(tipoContaEnum.descr);
                 this.tipoconta.setId(id);
-                return tipoContaEnum.tipoconta;
+                return this.tipoconta;
             }
         }
         return null;

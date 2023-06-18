@@ -1,29 +1,28 @@
 package br.com.mba.engenharia.de.software.negocio.veiculos;
 
-import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "veiculos")
-public class Veiculos {
+public class Veiculo {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tipo")
-    private TipoVeiculo tipo;
+    @Column(name = "tipo")
+    private Integer tipo;
 
     @Column(name = "valor")
     private Double valor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fabricante")
-    private Fabricante fabricante;
+    @Column(name = "fabricante")
+    private Integer fabricante;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "modelo")
-    private Modelo modelo;
+    @Column(name = "modelo")
+    private Integer modelo;
 
     @Column(name = "ano")
     private Integer ano;
@@ -31,15 +30,14 @@ public class Veiculos {
     @Column(name = "placa", length = 8)
     private String placa;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario")
-    private Usuarios usuario;
+    @Column(name = "usuario")
+    private Integer usuario;
 
-    public Usuarios getUsuario() {
+    public Integer getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuarios usuario) {
+    public void setUsuario(Integer usuario) {
         this.usuario = usuario;
     }
 
@@ -59,19 +57,19 @@ public class Veiculos {
         this.ano = ano;
     }
 
-    public Modelo getModelo() {
+    public Integer getModelo() {
         return modelo;
     }
 
-    public void setModelo(Modelo modelo) {
+    public void setModelo(Integer modelo) {
         this.modelo = modelo;
     }
 
-    public Fabricante getFabricante() {
+    public Integer getFabricante() {
         return fabricante;
     }
 
-    public void setFabricante(Fabricante fabricante) {
+    public void setFabricante(Integer fabricante) {
         this.fabricante = fabricante;
     }
 
@@ -83,11 +81,11 @@ public class Veiculos {
         this.valor = valor;
     }
 
-    public TipoVeiculo getTipo() {
+    public Integer getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoVeiculo tipo) {
+    public void setTipo(Integer tipo) {
         this.tipo = tipo;
     }
 

@@ -1,11 +1,13 @@
 package br.com.mba.engenharia.de.software.negocio.empresas;
 
-import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "empresa")
-public class Empresas {
+public class Empresa {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
@@ -28,15 +30,14 @@ public class Empresas {
     @Column(name = "faturamento")
     private Double faturamento;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario")
-    private Usuarios usuario;
+    @Column(name = "usuario")
+    private Integer usuario;
 
-    public Usuarios getUsuario() {
+    public Integer getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuarios usuario) {
+    public void setUsuario(Integer usuario) {
         this.usuario = usuario;
     }
 

@@ -1,22 +1,23 @@
 package br.com.mba.engenharia.de.software.negocio.contas;
 
-import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "conta")
-public class Contas  {
+public class Conta extends AbstractPersistable {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_banco")
-    private Banco banco;
+    @Column(name = "banco")
+    private Integer banco;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_tipo")
-    private Tipoconta tipo;
+    @Column(name = "tipo")
+    private Integer tipo;
 
     @Column(name = "saldo")
     private Double saldo;
@@ -27,15 +28,14 @@ public class Contas  {
     @Column(name = "conta", length = 12)
     private String conta;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_conta_usuario")
-    private Usuarios usuario;
+    @Column(name = "usuario")
+    private Integer usuario;
 
-    public Usuarios getUsuario() {
+    public Integer getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuarios usuario) {
+    public void setUsuario(Integer usuario) {
         this.usuario = usuario;
     }
 
@@ -63,19 +63,19 @@ public class Contas  {
         this.saldo = saldo;
     }
 
-    public Tipoconta getTipo() {
+    public Integer getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tipoconta tipo) {
+    public void setTipo(Integer tipo) {
         this.tipo = tipo;
     }
 
-    public Banco getBanco() {
+    public Integer getBanco() {
         return banco;
     }
 
-    public void setBanco(Banco banco) {
+    public void setBanco(Integer banco) {
         this.banco = banco;
     }
 

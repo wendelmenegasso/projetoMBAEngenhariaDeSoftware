@@ -1,18 +1,19 @@
 package br.com.mba.engenharia.de.software.negocio.imoveis;
 
-import br.com.mba.engenharia.de.software.negocio.usuarios.Usuarios;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "imoveis")
-public class Imoveis {
+public class Imovei {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tipo")
-    private TipoImovel tipo;
+    @Column(name = "tipo")
+    private Integer tipo;
 
     @Column(name = "valor")
     private Double valor;
@@ -20,13 +21,11 @@ public class Imoveis {
     @Column(name = "cep")
     private Integer cep;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "estado")
-    private Estado estado;
+    @Column(name = "estado")
+    private Integer estado;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cidade")
-    private Cidade cidade;
+    @Column(name = "cidade")
+    private Integer cidade;
 
     @Column(name = "bairro", length = 50)
     private String bairro;
@@ -40,15 +39,14 @@ public class Imoveis {
     @Column(name = "complemento", length = 50)
     private String complemento;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario")
-    private Usuarios usuario;
+    @Column(name = "usuario")
+    private Integer usuario;
 
-    public Usuarios getUsuario() {
+    public Integer getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuarios usuario) {
+    public void setUsuario(Integer usuario) {
         this.usuario = usuario;
     }
 
@@ -84,19 +82,19 @@ public class Imoveis {
         this.bairro = bairro;
     }
 
-    public Cidade getCidade() {
+    public Integer getCidade() {
         return cidade;
     }
 
-    public void setCidade(Cidade cidade) {
+    public void setCidade(Integer cidade) {
         this.cidade = cidade;
     }
 
-    public Estado getEstado() {
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(Estado estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
 
@@ -116,11 +114,11 @@ public class Imoveis {
         this.valor = valor;
     }
 
-    public TipoImovel getTipo() {
+    public Integer getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoImovel tipo) {
+    public void setTipo(Integer tipo) {
         this.tipo = tipo;
     }
 

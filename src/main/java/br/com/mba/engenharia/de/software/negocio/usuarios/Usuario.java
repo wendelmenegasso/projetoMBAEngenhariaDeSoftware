@@ -7,30 +7,30 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuarios {
+public class Usuario {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "username", length = 40)
+    @Column(name = "username", nullable = false, length = 40)
     private String username;
 
-    @Column(name = "senha", length = 200)
+    @Column(name = "senha", nullable = false, length = 200)
     private String senha;
 
-    @Column(name = "email", length = 50)
+    @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "token", length = 200)
+    @Column(name = "token", nullable = false, length = 200)
     private String token;
 
-    @Column(name = "nome", length = 30)
+    @Column(name = "nome", nullable = false, length = 30)
     private String nome;
 
-    @Column(name = "sobrenome", length = 50)
+    @Column(name = "sobrenome", nullable = false, length = 50)
     private String sobrenome;
 
-    @Column(name = "cpf", length = 11)
+    @Column(name = "cpf", nullable = false, length = 11)
     private String cpf;
 
     public String getCpf() {

@@ -1,6 +1,9 @@
 package br.com.mba.engenharia.de.software.negocio.veiculos;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "modelo")
@@ -9,9 +12,8 @@ public class Modelo {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fabricante")
-    private Fabricante fabricante;
+    @Column(name = "fabricante")
+    private Integer fabricante;
 
     @Column(name = "descr", length = 30)
     private String descr;
@@ -24,11 +26,11 @@ public class Modelo {
         this.descr = descr;
     }
 
-    public Fabricante getFabricante() {
+    public Integer getFabricante() {
         return fabricante;
     }
 
-    public void setFabricante(Fabricante fabricante) {
+    public void setFabricante(Integer fabricante) {
         this.fabricante = fabricante;
     }
 

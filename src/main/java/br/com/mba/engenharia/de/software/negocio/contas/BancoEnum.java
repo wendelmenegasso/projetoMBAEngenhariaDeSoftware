@@ -24,7 +24,7 @@ public enum BancoEnum{
            if (bancoEnum.id == id){
                this.banco.setDescr(bancoEnum.descr);
                this.banco.setId(id);
-               return bancoEnum.banco;
+               return this.banco;
            }
        }
         return null;
