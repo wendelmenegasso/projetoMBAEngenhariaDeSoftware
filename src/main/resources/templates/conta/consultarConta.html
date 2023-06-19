@@ -26,8 +26,9 @@
 
 </script>
 <body>
+<div style="width: 400px;">
 <h2>Consultar conta</h2>
-<form th:action="@{/testConta}" method="get">
+<form th:action="listarConta" method="get">
     <p th:text="Tipo"></p>
     <select name="tipoConta">
         <option value="1">Conta Corrente</option>
@@ -51,8 +52,6 @@
     <input type="text" width="200px" name="conta" placeholder="Numero conta"/>
     <p th:text="Agencias"></p>
     <input type="text" width="200px" name="agencia" placeholder="Numero agencia"/>
-    <p th:text="Saldo"></p>
-    <input type="text" width="200px" name="saldo" placeholder="Saldo"/>
     <input type="submit" value="+"/>
     <div class="oculto">
         <input class='formContato' type='hidden' name='idUser' id='idUser'/>
@@ -101,5 +100,6 @@
         </tfoot>
     </table>
 </form>
+</div>
 </body>
 </html>

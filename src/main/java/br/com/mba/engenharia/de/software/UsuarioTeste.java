@@ -1,8 +1,10 @@
 package br.com.mba.engenharia.de.software;
 
+import br.com.mba.engenharia.de.software.exceptions.ListarContaException;
 import br.com.mba.engenharia.de.software.negocio.contas.Conta;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -66,6 +68,26 @@ public class UsuarioTeste {
         entityManager.getTransaction().commit();
         entityManager.close();
         return true;
+    }
+    public List<Conta> listarTodasContas(Conta contas){
+        entityManagerFactory();
+        entityManager.getTransaction().begin();
+        List<Conta> listaDeContas = new ArrayList<>();
+        try {
+            int tamanho = 0;
+            tamanho = entityManager.createNativeQuery("select * from conta").getResultList().size();
+            for (int i=1; i <= tamanho; i++){
+                listaDeContas.add(entityManager.find(Conta.class, i));
+            }
+        } catch (IllegalArgumentException exception) {
+            exception.printStackTrace();
+            entityManager.close();
+            logger.trace(String.format("Erro %s", exception));
+            throw new ListarContaException("Erro na hora de listar as contas!");
+        }
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return listaDeContas;
     }
 }
 
