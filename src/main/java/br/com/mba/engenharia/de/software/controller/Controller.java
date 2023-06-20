@@ -1,6 +1,6 @@
 package br.com.mba.engenharia.de.software.controller;
 
-import br.com.mba.engenharia.de.software.UsuarioTeste;
+import br.com.mba.engenharia.de.software.service.ContaService;
 import br.com.mba.engenharia.de.software.negocio.contas.Conta;
 import br.com.mba.engenharia.de.software.negocio.usuarios.Usuario;
 
@@ -16,17 +16,17 @@ public class Controller {
     }
 
     public void cadastrarUsuario(){
-        UsuarioTeste usuarioTeste = new UsuarioTeste();
+        ContaService contaService = new ContaService();
     }
 
     public boolean cadastrarConta(Conta conta){
-        UsuarioTeste usuarioTeste = new UsuarioTeste();
-        return usuarioTeste.salvarConta(conta);
+        ContaService contaService = new ContaService();
+        return contaService.salvarConta(conta);
     }
 
     public List<Conta> consultarConta(Conta conta){
-        UsuarioTeste usuarioTeste = new UsuarioTeste();
-        return usuarioTeste.listarTodasContas(conta);
+        ContaService contaService = new ContaService();
+        return contaService.listarConta(conta);
     }
 
 }

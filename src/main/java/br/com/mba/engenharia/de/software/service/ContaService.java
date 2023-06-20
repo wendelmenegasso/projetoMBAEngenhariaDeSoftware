@@ -1,10 +1,9 @@
-package br.com.mba.engenharia.de.software;
+package br.com.mba.engenharia.de.software.service;
 
+import br.com.mba.engenharia.de.software.PersistenceUnitInfoImpl;
 import br.com.mba.engenharia.de.software.exceptions.ListarContaException;
 import br.com.mba.engenharia.de.software.negocio.contas.Conta;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -12,17 +11,15 @@ import org.springframework.orm.jpa.persistenceunit.SmartPersistenceUnitInfo;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 @Component
-public class UsuarioTeste {
+public class ContaService {
 
     @PersistenceContext
     jakarta.persistence.EntityManager entityManager;
 
-    private static final Logger logger = LoggerFactory.getLogger(UsuarioTeste.class);
+    private static final Logger logger = LoggerFactory.getLogger(ContaService.class);
 
     @Bean
     public EntityManagerFactory entityManagerFactory() {
@@ -50,11 +47,10 @@ public class UsuarioTeste {
         entityManagerFactory();
         entityManager.getTransaction().begin();
         List list = entityManager.createNativeQuery("select id from conta").getResultList();
-        if (list.size() > 0){
-            int id = (int) list.get(list.size() -1) + 1;
+        if (list.size() > 0) {
+            int id = (int) list.get(list.size() - 1) + 1;
             contas.setId(id);
-        }
-        else{
+        } else {
             contas.setId(1);
         }
         try {
@@ -69,14 +65,42 @@ public class UsuarioTeste {
         entityManager.close();
         return true;
     }
-    public List<Conta> listarTodasContas(Conta contas){
+
+    public List<Conta> procuraRegistro(List<Conta> list, Conta contas){
+        List<Conta> listaDeResultados = new ArrayList<>();
+        for (Conta conta : list){
+            if (contas.getId() == null && contas.getConta().isEmpty() && contas.getAgencia().isEmpty()) {
+                listaDeResultados = listarTodasContas();
+            }
+            else if (contas.getId() == null && !contas.getConta().isEmpty() && contas.getAgencia().isEmpty()) {
+                if (conta.getConta().equals(contas.getConta())){
+                    listaDeResultados.add(conta);
+                }
+            } else if (contas.getId() == null && contas.getConta().isEmpty() && !contas.getAgencia().isEmpty()) {
+                if (conta.getAgencia().equals(contas.getAgencia())){
+                    listaDeResultados.add(conta);
+                }   }
+            else {
+                if (conta.getConta().equals(contas.getConta())){
+                    listaDeResultados.add(conta);
+                }    }
+        }
+        return listaDeResultados;
+    }
+
+    public List<Conta> listarConta(Conta contas){
+        List<Conta> listaDeContas = listarTodasContas();
+        return procuraRegistro(listaDeContas, contas);
+    }
+
+    public List<Conta> listarTodasContas() {
         entityManagerFactory();
         entityManager.getTransaction().begin();
         List<Conta> listaDeContas = new ArrayList<>();
+        int posicao = 0;
+        posicao = entityManager.createNativeQuery("select id from conta").getResultList().size();
         try {
-            int tamanho = 0;
-            tamanho = entityManager.createNativeQuery("select * from conta").getResultList().size();
-            for (int i=1; i <= tamanho; i++){
+            for (int i=1; i <= posicao; i++){
                 listaDeContas.add(entityManager.find(Conta.class, i));
             }
         } catch (IllegalArgumentException exception) {

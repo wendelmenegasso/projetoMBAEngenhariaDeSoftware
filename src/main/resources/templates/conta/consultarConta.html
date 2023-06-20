@@ -3,28 +3,6 @@
 <head>
     <title>Consultar Conta</title>
 </head>
-<script>
-
- function getParameter(theParameter) {
-            var params = window.location.search.substr(1).split('&');
-
-            for (var i = 0; i < params.length; i++) {
-                var p = params[i].split('=');
-                if (p[0] == theParameter) {
-                    valorId = decodeURIComponent(p[1]);
-                    document.getElementById("idUser").value = valorId;
-
-                }
-            }
-            return false;
-            }
-
-
-            window.onload = function () {
-                getParameter('id');
-             }
-
-</script>
 <body>
 <div style="width: 400px;">
 <h2>Consultar conta</h2>
