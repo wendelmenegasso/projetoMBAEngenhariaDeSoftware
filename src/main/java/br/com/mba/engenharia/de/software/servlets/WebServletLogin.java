@@ -1,4 +1,7 @@
-package br.com.mba.engenharia.de.software.controller;
+package br.com.mba.engenharia.de.software.servlets;
+
+import br.com.mba.engenharia.de.software.controller.LoginController;
+import br.com.mba.engenharia.de.software.controller.UsuarioController;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,5 +34,7 @@ public class WebServletLogin extends HttpServlet {
         response.getWriter();
         request.setAttribute("/testLogin",new LoginController().testLogin(request,response));
         request.setAttribute("/logout", new LoginController().logout());
+        request.setAttribute("/redirectCadastrarUsuario", new UsuarioController().cadastrarUsuario(request, response));
+        request.setAttribute("/enviarCadastro", new UsuarioController().enviarCadastro(request, response));
     }
 }

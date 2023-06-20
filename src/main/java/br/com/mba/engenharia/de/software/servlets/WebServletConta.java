@@ -1,4 +1,6 @@
-package br.com.mba.engenharia.de.software.controller;
+package br.com.mba.engenharia.de.software.servlets;
+
+import br.com.mba.engenharia.de.software.controller.ContaController;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

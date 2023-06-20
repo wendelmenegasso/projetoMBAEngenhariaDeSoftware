@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
-
 public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(Login.class);
     @GetMapping("/loginFailure")
@@ -21,11 +20,11 @@ public class LoginController {
         return "login falhou";
     }
     @GetMapping("/redirectLogout")
-    String logout() {
+    public String logout() {
         return "logout";
     }
     @GetMapping("testLogin")
-    String testLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String testLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
         Usuario usuario = new Usuario();
