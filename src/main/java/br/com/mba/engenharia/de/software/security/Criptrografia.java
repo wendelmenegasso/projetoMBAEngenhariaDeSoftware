@@ -49,4 +49,25 @@ public class Criptrografia {
         String senhahexAdmin = hexStringSenhaAdmin.toString();
         return senhahexAdmin.equals(senhaDigitada);
     }
+    public String gerarHash(String senha){
+        MessageDigest algorithm = null;
+        try {
+            algorithm = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        byte messageDigestSenha[] = new byte[0];
+        try {
+            messageDigestSenha = algorithm.digest(senha.getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        StringBuilder hexStringSenha = new StringBuilder();
+        for (byte b : messageDigestSenha) {
+            hexStringSenha.append(String.format("%02X", 0xFF & b));
+        }
+        String senhahex = hexStringSenha.toString();
+        return senhahex;
+    }
 }

@@ -16,5 +16,6 @@
                 <mapping class="br.com.mba.engenharia.de.software.negocio.usuarios.Usuario" />
                 <mapping class="br.com.mba.engenharia.de.software.negocio.contas.Conta" />
                 <mapping class="br.com.mba.engenharia.de.software.negocio.contas.Contas" />
+                <mapping class="br.com.mba.engenharia.de.software.negocio.users.Users" />
     </session-factory>
 </hibernate-configuration>

@@ -1,6 +1,8 @@
 package br.com.mba.engenharia.de.software.controller;
 
 import br.com.mba.engenharia.de.software.negocio.usuarios.Usuario;
+import br.com.mba.engenharia.de.software.security.Criptrografia;
+import br.com.mba.engenharia.de.software.security.GerarToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +22,22 @@ public class UsuarioController {
     }
     @GetMapping("/enviarCadastro")
     public Object enviarCadastro(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().write("Enviado com sucesso, por favor ative o usuário, para maiores informações foi enviado um e-mail para o e-mail cadastrado");
+        Usuario usuario = new Usuario();
+        GerarToken gerarToken = new GerarToken();
+        usuario.setToken(gerarToken.gerarToken());
+        String email = request.getParameter("email");
+        String username = request.getParameter("username");
+        Criptrografia criptrografia = new Criptrografia();
+        String senha = criptrografia.gerarHash(request.getParameter("senha"));
+        String nome = request.getParameter("nome");
+        String sobrenome = request.getParameter("sobrenome");
+        String cpf = request.getParameter("cpf");
+        usuario.setUsername(username);
+        usuario.setEmail(email);
+        usuario.setSenha(senha);
+        usuario.setNome(nome);
+        usuario.setSobrenome(sobrenome);
+        usuario.setCpf(cpf);
         return null;
     }
 }
