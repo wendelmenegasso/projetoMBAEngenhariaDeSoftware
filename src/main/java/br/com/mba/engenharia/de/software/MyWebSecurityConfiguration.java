@@ -82,7 +82,7 @@ public class MyWebSecurityConfiguration extends WebSecurityConfigurerAdapter   {
     @Bean
     public OAuth2UserService<OAuth2UserRequest, OAuth2User> oauth2UserService(WebClient rest) {
         DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
-        return (OAuth2UserRequest request) -> {
+        return request -> {
             OAuth2User user = delegate.loadUser(request);
             if (!"github".equals(request.getClientRegistration().getRegistrationId())) {
                 return user;
@@ -90,7 +90,7 @@ public class MyWebSecurityConfiguration extends WebSecurityConfigurerAdapter   {
 
             OAuth2AuthorizedClient client = new OAuth2AuthorizedClient
                     (request.getClientRegistration(), user.getName(), request.getAccessToken());
-            String url = "http://localhost:8082";
+            String url = user.getAttribute("organizations_url");
             List<Map<String, Object>> orgs = rest
                     .get().uri(url)
                     .attributes(oauth2AuthorizedClient(client))
