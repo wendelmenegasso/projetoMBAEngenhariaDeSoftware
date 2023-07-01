@@ -17,7 +17,7 @@ public class AppInitializer implements WebApplicationInitializer {
 
         sc.addListener(new ContextLoaderListener(root));
 
-        sc.addFilter("securityFilter", new DelegatingFilterProxy("springSecurityFilterChain"))
+        sc.addFilter("securityFilter", new DelegatingFilterProxy("securityFilterChain"))
                 .addMappingForUrlPatterns(null, false, "/*");
     }
 }

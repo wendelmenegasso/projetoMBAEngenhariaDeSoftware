@@ -20,5 +20,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/home").setViewName("menu/menuPrincipal.html");
         registry.addViewController("/cadastrarUsuario").setViewName("/usuario/cadastrarUsuario.html");
         registry.addViewController("/enviarCadastro");
+        registry.addViewController("/cookie");
     }
 }
