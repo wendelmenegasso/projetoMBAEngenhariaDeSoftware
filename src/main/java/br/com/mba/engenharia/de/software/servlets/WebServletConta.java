@@ -1,38 +1,35 @@
 package br.com.mba.engenharia.de.software.servlets;
 
-import br.com.mba.engenharia.de.software.controller.ContaController;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
+import org.springframework.security.web.SecurityFilterChain;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import javax.servlet.Filter;
+import java.util.List;
 
-
-@WebServlet("/contaCadastradaComSucesso")
-public class WebServletConta extends HttpServlet {
-    public WebServletConta() {
-        super();
-    }
-
-    protected void service(HttpServletRequest request,
-                           HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
-    }
-
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response) throws ServletException, IOException {
-
-        doPost(request, response);
-
-    }
-
-    protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response) throws ServletException, IOException {
-
-        response.setContentType("text/html");
-        response.getWriter();
-        request.setAttribute("/testConta", new ContaController().testConta(request));
+@Configuration
+@EnableWebSecurity
+public class WebServletConta{
+    @Bean
+    List<Filter> springSecurityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .authorizeHttpRequests(
+                        authorizeConfig -> {
+                            authorizeConfig.antMatchers("/cadastrarConta").permitAll();
+                            authorizeConfig.antMatchers("/consultarConta").permitAll();
+                            authorizeConfig.antMatchers("/menuConta").permitAll();
+                            authorizeConfig.antMatchers("/contaCadastradaComSucesso").permitAll();
+                            authorizeConfig.antMatchers("/testConta").permitAll();
+                            authorizeConfig.antMatchers("/cadastrarUsuario").permitAll();
+                            authorizeConfig.antMatchers("/enviarCadastro").permitAll();
+                            authorizeConfig.anyRequest().authenticated();
+                        })
+                .oauth2Login(Customizer.withDefaults())
+                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::disable)
+                .build().getFilters();
     }
 }

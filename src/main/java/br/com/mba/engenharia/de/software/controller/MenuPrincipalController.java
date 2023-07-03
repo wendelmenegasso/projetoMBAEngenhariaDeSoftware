@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -14,17 +13,17 @@ import java.io.IOException;
 public class MenuPrincipalController {
     private static final Logger logger = LoggerFactory.getLogger(Login.class);
     @GetMapping("/redirectMenuConta")
-    String redirectMenuConta(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String redirectMenuConta(HttpServletResponse response) throws IOException {
         response.sendRedirect("/menuConta");
         return null;
     }
     @GetMapping("/redirectCadastrarConta")
-    String redirectCadastrarConta(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    String redirectCadastrarConta(HttpServletResponse response) throws IOException {
         response.sendRedirect("/cadastrarConta");
         return null;
     }
     @GetMapping("/redirectConsultarConta")
-    String redirectConsultarConta(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    String redirectConsultarConta(HttpServletResponse response) throws IOException {
         response.sendRedirect("/consultarConta");
         return null;
     }

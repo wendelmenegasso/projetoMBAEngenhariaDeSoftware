@@ -4,9 +4,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "usuarios")
+@Component
 public class Usuario {
     @Id
     @Column(name = "id", nullable = false)
@@ -15,13 +17,13 @@ public class Usuario {
     @Column(name = "username", nullable = false, length = 40)
     private String username;
 
-    @Column(name = "senha", nullable = false, length = 200)
+    @Column(name = "senha", nullable = false, length = 300)
     private String senha;
 
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "token", nullable = false, length = 200)
+    @Column(name = "token", nullable = false, length = 300)
     private String token;
 
     @Column(name = "nome", nullable = false, length = 30)

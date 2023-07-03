@@ -28,6 +28,30 @@ public class Criptrografia {
         System.out.println(senhahexAdmin);
         return comparar("123456", senhahexAdmin);
     }
+
+    public String criptografar(String senhaOriginal){
+        MessageDigest algorithm = null;
+        try {
+            algorithm = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        byte messageDigestSenhaAdmin[] = new byte[0];
+        try {
+            messageDigestSenhaAdmin = algorithm.digest(senhaOriginal.getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        StringBuilder hexStringSenhaAdmin = new StringBuilder();
+        for (byte b : messageDigestSenhaAdmin) {
+            hexStringSenhaAdmin.append(String.format("%02X", 0xFF & b));
+        }
+        String senhahexOriginal = hexStringSenhaAdmin.toString();
+        return senhahexOriginal;
+    }
+
+
     public boolean comparar(String senhaCorreta, String senhaDigitada){
         MessageDigest algorithm = null;
         try {

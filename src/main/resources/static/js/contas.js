@@ -7,6 +7,12 @@ function consultarContas(){
 function submitContas(){
     window.location.href = "/redirectMenuConta";
 }
+
+function menuCadastrarConta(){
+    document.getElementById("cadastrarConta").style = "display: flex; height: 600px";
+    document.getElementById("menu").style = "display: none";
+}
+
  function getParameter(theParameter) {
             var params = window.location.search.substr(1).split('&');
 

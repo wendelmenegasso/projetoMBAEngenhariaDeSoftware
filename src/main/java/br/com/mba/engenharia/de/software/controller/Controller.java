@@ -1,22 +1,31 @@
 package br.com.mba.engenharia.de.software.controller;
 
-import br.com.mba.engenharia.de.software.service.ContaService;
 import br.com.mba.engenharia.de.software.negocio.contas.Conta;
 import br.com.mba.engenharia.de.software.negocio.usuarios.Usuario;
+import br.com.mba.engenharia.de.software.service.ContaService;
+import br.com.mba.engenharia.de.software.service.UserService;
 
 import java.util.List;
 
-public class Controller {
+public class Controller{
     private Usuario usuario;
-    public Controller(Usuario usuario){
+
+    public void setController(Usuario usuario){
         this.usuario = usuario;
     }
 
     public Controller(){
     }
 
-    public void cadastrarUsuario(){
-        ContaService contaService = new ContaService();
+    public boolean cadastrarUsuario(){
+        UserService userService = new UserService();
+        return userService.salvarUsuario(usuario);
+    }
+
+    public boolean consultarUsuario(){
+        UserService userService = new UserService();
+        List<Usuario> userList = userService.listarUsuario(usuario);
+        return !userList.isEmpty();
     }
 
     public boolean cadastrarConta(Conta conta){
@@ -27,6 +36,11 @@ public class Controller {
     public List<Conta> consultarConta(Conta conta){
         ContaService contaService = new ContaService();
         return contaService.listarConta(conta);
+    }
+
+    public boolean desbloquearUsuario() throws InstantiationException, IllegalAccessException {
+        UserService userService = new UserService();
+        return userService.habilitarUsuario(usuario);
     }
 
 }
