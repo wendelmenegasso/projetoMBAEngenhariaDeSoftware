@@ -4,10 +4,7 @@ import br.com.mba.engenharia.de.software.PersistenceUnitInfoImpl;
 import br.com.mba.engenharia.de.software.exceptions.ListarContaException;
 import br.com.mba.engenharia.de.software.negocio.usuarios.Usuario;
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.CriteriaUpdate;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -82,46 +79,8 @@ public class UserService{
         return true;
     }
 
-    public List<Usuario> procuraRegistro(List<Usuario> list, Usuario users) {
-        List<Usuario> listaDeResultados = new ArrayList<>();
-        for (Usuario user : list) {
-
-            if (user.getUsername().equals(users.getUsername()) && user.getSenha().equals(users.getSenha())) {
-                listaDeResultados.add(user);
-            }
-            else if (user.getCpf().isEmpty()) {
-                listaDeResultados.add(user);
-            }
-            else if (user.getCpf().equals(users.getCpf())) {
-                listaDeResultados.add(user);
-
-            }
-        }
-        return listaDeResultados;
-    }
-
-    public List<Usuario> listarUsuario(Usuario users){
-        List<Usuario> listaDeUsuarios = listarTodosUsuarios();
-        return procuraRegistro(listaDeUsuarios, users);
-    }
-
-    public List<Usuario> listarTodosUsuarios() {
-        entityManagerFactory();
-        entityManager.getTransaction().begin();
-        List<Usuario> listaDeUsers = new ArrayList<>();
-        int posicao = 0;
-        posicao = entityManager.createNativeQuery("select id from usuarios").getResultList().size();
-        try {
-            for (int i=1; i <= posicao; i++){
-                listaDeUsers.add(entityManager.find(Usuario.class, i));
-            }
-        } catch (IllegalArgumentException exception) {
-            exception.printStackTrace();
-            entityManager.close();
-            logger.trace(String.format("Erro %s", exception));
-            throw new ListarContaException("Erro na hora de listar os Usuarios!");
-        }
-        return listaDeUsers;
+    public List<Usuario> listarUsuario(Usuario users) {
+        return procuraRegistro(users);
     }
 
 
@@ -172,6 +131,30 @@ public class UserService{
         return query.executeUpdate();
     }
 
+    @Transactional
+    public List<Usuario> listarTodosUsuarios(){
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Usuario> cQuery = builder.createQuery(Usuario.class);
+        Root<Usuario> root = cQuery.from(Usuario.class);
+        cQuery
+                .select(root);
+
+        TypedQuery<Usuario> query = entityManager.createQuery(cQuery);
+        return query.getResultList();
+    }
+
+    @Transactional
+    public List<Usuario> procuraRegistro(Usuario user){
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Usuario> criteriaQuery = builder.createQuery(Usuario.class);
+        Root<Usuario> root = criteriaQuery.from(Usuario.class);
+        criteriaQuery
+                .select(root)
+                .where(builder.equal(root.get("username"),user.getUsername()))
+                .where(builder.equal(root.get("cpf"),user.getCpf()));
+        TypedQuery<Usuario> query = entityManager.createQuery(criteriaQuery);
+        return query.getResultList();
+    }
 
 }
 

@@ -3,13 +3,18 @@ package br.com.mba.engenharia.de.software.service;
 import br.com.mba.engenharia.de.software.PersistenceUnitInfoImpl;
 import br.com.mba.engenharia.de.software.exceptions.ListarContaException;
 import br.com.mba.engenharia.de.software.negocio.contas.Conta;
+import br.com.mba.engenharia.de.software.negocio.usuarios.Usuario;
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.orm.jpa.persistenceunit.SmartPersistenceUnitInfo;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -66,53 +71,69 @@ public class ContaService {
         return true;
     }
 
-    public List<Conta> procuraRegistro(List<Conta> list, Conta contas){
-        List<Conta> listaDeResultados = new ArrayList<>();
-        for (Conta conta : list){
-            if (contas.getId() == null && contas.getConta().isEmpty() && contas.getAgencia().isEmpty()) {
-                listaDeResultados = listarTodasContas();
-            }
-            else if (contas.getId() == null && !contas.getConta().isEmpty() && contas.getAgencia().isEmpty()) {
-                if (conta.getConta().equals(contas.getConta())){
-                    listaDeResultados.add(conta);
-                }
-            } else if (contas.getId() == null && contas.getConta().isEmpty() && !contas.getAgencia().isEmpty()) {
-                if (conta.getAgencia().equals(contas.getAgencia())){
-                    listaDeResultados.add(conta);
-                }   }
-            else {
-                if (conta.getConta().equals(contas.getConta())){
-                    listaDeResultados.add(conta);
-                }    }
+    @Transactional
+    public List<Conta> procuraRegistro(Conta contas){
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery criteriaQuery = builder.createQuery(Conta.class);
+        Root<Conta> root = criteriaQuery.from(Conta.class);
+        if (contas.getConta() != null && contas.getAgencia() != null && contas.getBanco() != null){
+            criteriaQuery
+                    .select(root)
+                    .where(builder.equal(root.get("conta"),contas.getConta()))
+                    .where(builder.equal(root.get("agencia"),contas.getAgencia()))
+                    .where(builder.equal(root.get("banco"), contas.getBanco()));
         }
-        return listaDeResultados;
+        else if (contas.getConta() != null && contas.getAgencia() != null){
+            criteriaQuery
+                    .select(root)
+                    .where(builder.equal(root.get("conta"),contas.getConta()))
+                    .where(builder.equal(root.get("agencia"),contas.getAgencia()));
+        }
+        else if (contas.getConta() != null && contas.getBanco() != null){
+            criteriaQuery
+                    .select(root)
+                    .where(builder.equal(root.get("conta"),contas.getConta()))
+                    .where(builder.equal(root.get("banco"), contas.getBanco()));
+        }
+        else if (contas.getAgencia() != null && contas.getBanco() != null){
+            criteriaQuery
+                    .select(root)
+                    .where(builder.equal(root.get("agencia"),contas.getAgencia()))
+                    .where(builder.equal(root.get("banco"), contas.getBanco()));
+        } else if (contas.getConta() != null) {
+            criteriaQuery
+                    .select(root)
+                    .where(builder.equal(root.get("conta"),contas.getConta()));
+        } else if (contas.getAgencia() != null) {
+            criteriaQuery
+                    .select(root)
+                    .where(builder.equal(root.get("agencia"),contas.getAgencia()));
+        }
+        else if (contas.getBanco() != null){
+            criteriaQuery
+                    .select(root)
+                    .where(builder.equal(root.get("banco"), contas.getBanco()));
+        }
+        TypedQuery<Conta> query = entityManager.createQuery(criteriaQuery);
+        return query.getResultList();
     }
 
     public List<Conta> listarConta(Conta contas){
-        List<Conta> listaDeContas = listarTodasContas();
-        return procuraRegistro(listaDeContas, contas);
+        return procuraRegistro(contas);
     }
 
-    public List<Conta> listarTodasContas() {
-        entityManagerFactory();
-        entityManager.getTransaction().begin();
-        List<Conta> listaDeContas = new ArrayList<>();
-        int posicao = 0;
-        posicao = entityManager.createNativeQuery("select id from conta").getResultList().size();
-        try {
-            for (int i=1; i <= posicao; i++){
-                listaDeContas.add(entityManager.find(Conta.class, i));
-            }
-        } catch (IllegalArgumentException exception) {
-            exception.printStackTrace();
-            entityManager.close();
-            logger.trace(String.format("Erro %s", exception));
-            throw new ListarContaException("Erro na hora de listar as contas!");
-        }
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        return listaDeContas;
+    @Transactional
+    public List<Conta> listarTodasContas(){
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Conta> cQuery = builder.createQuery(Conta.class);
+        Root<Conta> root = cQuery.from(Conta.class);
+        cQuery
+                .select(root);
+
+        TypedQuery<Conta> query = entityManager.createQuery(cQuery);
+        return query.getResultList();
     }
+
 }
 
 

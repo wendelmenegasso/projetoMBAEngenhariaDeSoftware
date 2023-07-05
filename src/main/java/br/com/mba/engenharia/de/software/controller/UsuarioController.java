@@ -2,8 +2,10 @@ package br.com.mba.engenharia.de.software.controller;
 
 import br.com.mba.engenharia.de.software.negocio.usuarios.Usuario;
 import br.com.mba.engenharia.de.software.output.SenderMail;
+import br.com.mba.engenharia.de.software.security.ComplexidadeSenha;
 import br.com.mba.engenharia.de.software.security.Criptrografia;
 import br.com.mba.engenharia.de.software.security.GerarToken;
+import br.com.mba.engenharia.de.software.utils.ValidadorCPF;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,13 +32,25 @@ public class UsuarioController{
                                  HttpServletResponse response) throws IOException {
         GerarToken gerarToken = new GerarToken();
         Usuario usuario = new Usuario();
-        usuario.setCpf(cpf);
+        ValidadorCPF validadorCPF = new ValidadorCPF();
+        if (validadorCPF.isValid(cpf)){
+            usuario.setCpf(cpf);
+        }
+        else {
+            return "CPF inválido";
+        }
         usuario.setUsername(username);
         usuario.setNome(nome);
         usuario.setEmail(email);
         usuario.setSobrenome(sobrenome);
         Criptrografia criptrografia = new Criptrografia();
-        usuario.setSenha(criptrografia.criptografar(password));
+        ComplexidadeSenha  complexidadeSenha = new ComplexidadeSenha();
+        if (complexidadeSenha.isStronger(password)){
+            usuario.setSenha(criptrografia.criptografar(password));
+        }
+        else {
+            return "Senha fraca";
+        }
         usuario.setToken(gerarToken.gerarToken());
         Controller controller = new Controller();
         controller.setController(usuario);
